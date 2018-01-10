@@ -1,28 +1,32 @@
+import groovy.json.JsonSlurper
 
-    import groovy.json.JsonSlurper
-
-    def old = '{"group1" : "1", "group2": "2", "group3" : "3", "group4" : "4", "group5" : "5",  "group9" : "100"}'
-    def neww = '{"group1" : "1.1", "group2": "2" ,"group4" : "4", "group5" : "5.2",  "group6" : "6"}'
-
-
-    def old_1 = new JsonSlurper().parseText(old)
-    def neww_1 = new JsonSlurper().parseText(neww)
+//def old = '{"group1" : "1", "group2": "2", "group3" : "3", "group4" : "4", "group5" : "5",  "group9" : "100"}'
+//def neww = '{"group1" : "1.1", "group2": "2" ,"group4" : "4", "group5" : "5.2",  "group6" : "6"}'
 
 
-    def old_slurp = groovy.json.JsonOutput.toJson(old_1 - neww_1)
-    def new_slurp = groovy.json.JsonOutput.toJson(old_1 + neww_1)
+def old = new File("../old.json").text
+def neww = new File("../neww.json").text
 
-    def commons_slurp = old_1.plus(neww_1)
-    def difference_slurp = old_1.minus(neww_1)
-    def remove_slurp = commons_slurp.minus(difference_slurp)
+def old_1 = new JsonSlurper().parseText(old)
+def neww_1 = new JsonSlurper().parseText(neww)
 
-    print '\n' + old_1.minus(neww_1)
 
-    def finallll = old_slurp.minus(new_slurp)
+def old_slurp = groovy.json.JsonOutput.toJson(old_1 - neww_1)
+def new_slurp = groovy.json.JsonOutput.toJson(old_1 + neww_1)
 
-    print '\n' + '\n' + "commons_slurp= "  +commons_slurp
-    print '\n' + "difference_slurp= " + difference_slurp
-    print '\n' + "remove_slurp= " + remove_slurp
+def commons_slurp = old_1.plus(neww_1)
+def difference_slurp = old_1.minus(neww_1)
+def remove_slurp = groovy.json.JsonOutput.toJson(commons_slurp.minus(difference_slurp))
+
+
+
+print '\n' + old_1.minus(neww_1)
+
+def finallll = old_slurp.minus(new_slurp)
+
+print '\n' + '\n' + "commons_slurp= "  +commons_slurp
+print '\n' + "difference_slurp= " + difference_slurp
+print '\n' + "remove_slurp= " + remove_slurp
 
 '''
 OLD   new     DATABASE = OUTPUT
