@@ -4,8 +4,8 @@ import groovy.json.JsonSlurper
 //def neww = '{"group1" : "1.1", "group2": "2" ,"group4" : "4", "group5" : "5.2",  "group6" : "6"}'
 
 
-def old = new File("../old.json").text
-def neww = new File("../neww.json").text
+def old = new File("/c/Users/elmo.jr.v.tabuzo/.jenkins/workspace/for_training/compareJSONGroovy/old.json").text
+def neww = new File("/c/Users/elmo.jr.v.tabuzo/.jenkins/workspace/for_training/compareJSONGroovy/neww.json").text
 
 def old_1 = new JsonSlurper().parseText(old)
 def neww_1 = new JsonSlurper().parseText(neww)
